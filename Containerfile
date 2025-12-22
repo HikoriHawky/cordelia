@@ -1,15 +1,16 @@
 # Allow build scripts to be referenced without being copied into the final image
 FROM scratch AS ctx
 
-COPY system_files /
 COPY build_files /build_files
 
 # Base Image
 FROM ghcr.io/ublue-os/bazzite:stable
 
+COPY system_files /
+
 # Image Info
 ARG IMAGE_NAME="${IMAGE_NAME:-cordelia}"
-ARG IMAGE_VENDOR="{IMAGE_VENDOR:-hikorihawky}"
+ARG IMAGE_VENDOR="${IMAGE_VENDOR:-hikorihawky}"
 
 ## Other possible base images include:
 # FROM ghcr.io/ublue-os/bazzite:latest
