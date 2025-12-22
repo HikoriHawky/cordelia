@@ -14,7 +14,7 @@ sed -i 's|"image-ref": [^,]*|"image-ref": "'"$IMAGE_REF"'"|' $IMAGE_INFO
 
 # OS Release File
 sed -i "s/^VARIANT_ID=.*/VARIANT_ID=$IMAGE_NAME/" /usr/lib/os-release
-sed -i "s/^PRETTY_NAME=.*/PRETTY_NAME=$IMAGE_PRETTY_NAME" /usr/lib/os-release
+sed -i "s/^PRETTY_NAME=.*/PRETTY_NAME=$IMAGE_PRETTY_NAME/" /usr/lib/os-release
 sed -i "s/^NAME=.*/NAME=$IMAGE_PRETTY_NAME/" /usr/lib/os-release
 sed -i "s/^DEFAULT_HOSTNAME=.*/DEFAULT_HOSTNAME=\"${IMAGE_PRETTY_NAME,}\"/" /usr/lib/os-release
 sed -i "s/^VARIANT_ID=.*/VARIANT_ID=$IMAGE_NAME/" /usr/lib/os-release
