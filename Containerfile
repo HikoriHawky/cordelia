@@ -1,6 +1,8 @@
 # Allow build scripts to be referenced without being copied into the final image
 FROM scratch AS ctx
-COPY build_files /
+
+COPY system_files /files
+COPY build_files /build_files
 
 # Base Image
 FROM ghcr.io/ublue-os/bazzite:stable
@@ -33,10 +35,13 @@ ARG IMAGE_VENDOR="{IMAGE_VENDOR:-hikorihawky}"
 ## make modifications desired in your image and install packages by modifying the build.sh script
 ## the following RUN directive does all the things required to run "build.sh" as recommended.
 
+COPY system_files /
+
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
+    /ctx/00-image-info.sh \
     /ctx/build.sh
     
 ### LINTING
