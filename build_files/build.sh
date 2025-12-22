@@ -12,6 +12,9 @@ set -ouex pipefail
 # Emacs (and NeoVim, just in case)
 dnf5 install -y emacs libvterm neovim
 
+# BorgBackup
+dnf5 install -y borgbackup borgmatic
+
 # Use a COPR Example:
 #
 # dnf5 -y copr enable ublue-os/staging
