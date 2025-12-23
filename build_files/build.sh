@@ -12,6 +12,9 @@ set -ouex pipefail
 # Emacs (and NeoVim, just in case)
 dnf5 install -y emacs libvterm neovim
 
+# Some CLI tools and basic tooling
+dnf5 install -y ripgrep fd-find cmake meson
+
 # BorgBackup
 dnf5 install -y borgbackup borgmatic
 
