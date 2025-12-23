@@ -205,7 +205,7 @@ def calculate_changes(pkgs: list[str], prev: dict[str, str], curr: dict[str, str
 
     print("added: " + str(len(added)))
     print("changed: " + str(len(removed)))
-    print("removed" + str(len(removed)))
+    print("removed: " + str(len(removed)))
     out = ""
     for pkg in added:
         out += PATTERN_ADD.format(name=pkg, version=curr[pkg])
