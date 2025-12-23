@@ -5,7 +5,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: '05 10 * * *'  # 10:05am UTC everyday
+    - cron: '05 10 * * TUE'  # 10:05am UTC every tuesday
   push:
     branches:
       - main
@@ -26,7 +26,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build_push:
+  build-push:
     name: Build and push image
     runs-on: ubuntu-24.04
 
@@ -186,3 +186,11 @@ jobs:
           TAGS: ${{ steps.push.outputs.digest }}
           COSIGN_EXPERIMENTAL: false
           COSIGN_PRIVATE_KEY: ${{ secrets.SIGNING_SECRET }}
+
+  generate-release:
+    name: Generate Release
+    needs: [build-push]
+    secrets: inherit
+    uses: ./.github/workflows/generate-release.yml
+    with:
+      stream_name: '["stable"]'
