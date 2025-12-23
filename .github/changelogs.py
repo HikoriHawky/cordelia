@@ -10,15 +10,14 @@ from collections import defaultdict
 
 REGISTRY = "docker://ghcr.io/hikorihawky/"
 
-IMAGE_MATRIX = {
-    "experience": ["base"],
-    "image_flavor": ["main"],
-}
+IMAGES = [
+    "cordelia",
+]
 
 RETRIES = 3
 RETRY_WAIT = 5
 FEDORA_PATTERN = re.compile(r"\.fc\d\d")
-START_PATTERN = lambda target: re.compile(rf"{target}-\d\d\d+")
+START_PATTERN = re.compile(r"stable.\d+-\d+")
 
 PATTERN_ADD = "\n| ✨ | {name} | | {version} |"
 PATTERN_CHANGE = "\n| 🔄 | {name} | {prev} | {new} |"
@@ -86,26 +85,23 @@ BLACKLIST_VERSIONS = [
     "hhd",
 ]
 
+def get_images():
+    for img in IMAGES:
+        if "deck" in img:
+            base = "deck"
+        else:
+            base = "desktop"
 
-def get_images(target: str):
-    if "latest" in target:
-        matrix = IMAGE_MATRIX_LATEST
-    else:
-        matrix = IMAGE_MATRIX
+        if "gnome" in img:
+            de = "gnome"
+        else:
+            de = "kde"
 
-    for experience, image_flavor in product(*matrix.values()):
-        img = "cordelia"
-
-        if image_flavor != "main":
-            img += "-"
-            img += image_flavor
-
-        yield img, experience, image_flavor
-
+        yield img, base, de
 
 def get_manifests(target: str):
     out = {}
-    imgs = list(get_images(target))
+    imgs = list(get_images())
     for j, (img, _, _) in enumerate(imgs):
         output = None
         print(f"Getting {img}:{target} manifest ({j+1}/{len(imgs)}).")
@@ -137,7 +133,7 @@ def get_tags(target: str, manifests: dict[str, Any]):
         # Tags ending with .0 should not exist
         if tag.endswith(".0"):
             continue
-        if re.match(START_PATTERN(target), tag):
+        if re.match(START_PATTERN, tag):
             tags.add(tag)
 
     for manifest in manifests.values():
@@ -166,7 +162,6 @@ def get_packages(manifests: dict[str, Any]):
 
 def get_package_groups(target: str, prev: dict[str, Any], manifests: dict[str, Any]):
     common = set()
-    others = {k: set() for k in OTHER_NAMES.keys()}
 
     npkg = get_packages(manifests)
     ppkg = get_packages(prev)
@@ -178,7 +173,7 @@ def get_package_groups(target: str, prev: dict[str, Any], manifests: dict[str, A
 
     # Find common packages
     first = True
-    for img, experience, image_flavor in get_images(target):
+    for img, base, de in get_images():
         if img not in pkg:
             continue
 
@@ -192,29 +187,7 @@ def get_package_groups(target: str, prev: dict[str, Any], manifests: dict[str, A
 
         first = False
 
-    # Find other packages
-    for t, other in others.items():
-        first = True
-        for img, experience, image_flavor in get_images(target):
-            if img not in pkg:
-                continue
-
-
-            if t == "base" and experience != "base":
-                continue
-
-            if first:
-                for p in pkg[img]:
-                    if p not in common:
-                        other.add(p)
-            else:
-                for c in other.copy():
-                    if c not in pkg[img]:
-                        other.remove(c)
-
-            first = False
-
-    return sorted(common), {k: sorted(v) for k, v in others.items()}
+    return sorted(common)
 
 
 def get_versions(manifests: dict[str, Any]):
@@ -321,7 +294,7 @@ def generate_changelog(
     prev_manifests,
     manifests,
 ):
-    common, others = get_package_groups(target, prev_manifests, manifests)
+    common = get_package_groups(target, prev_manifests, manifests)
     versions = get_versions(manifests)
     prev_versions = get_versions(prev_manifests)
 
@@ -388,10 +361,6 @@ def generate_changelog(
     common = calculate_changes(common, prev_versions, versions)
     if common:
         changes += COMMON_PAT.format(changes=common)
-    for k, v in others.items():
-        chg = calculate_changes(v, prev_versions, versions)
-        if chg:
-            changes += OTHER_NAMES[k].format(changes=chg)
 
     changelog = changelog.replace("{changes}", changes)
 
