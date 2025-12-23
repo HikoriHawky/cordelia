@@ -159,13 +159,8 @@ def get_package_groups(target: str, prev: dict[str, Any], manifests: dict[str, A
         if img not in pkg:
             continue
 
-        if first:
-            for p in pkg[img]:
-                common.add(p)
-        else:
-            for c in common.copy():
-                if c not in pkg[img]:
-                    common.remove(c)
+        for p in pkg[img]:
+            common.add(p)
 
         first = False
 
@@ -188,6 +183,7 @@ def calculate_changes(pkgs: list[str], prev: dict[str, str], curr: dict[str, str
 
     blacklist_ver = set([curr.get(v, None) for v in BLACKLIST_VERSIONS])
 
+    print("pkgs: " + str(len(pkgs)))
     for pkg in pkgs:
         # Clearup changelog by removing mentioned packages
         if pkg in BLACKLIST_VERSIONS:
@@ -207,6 +203,9 @@ def calculate_changes(pkgs: list[str], prev: dict[str, str], curr: dict[str, str
         blacklist_ver.add(curr.get(pkg, None))
         blacklist_ver.add(prev.get(pkg, None))
 
+    print("added: " + str(len(added)))
+    print("changed: " + str(len(removed)))
+    print("removed" + str(len(removed)))
     out = ""
     for pkg in added:
         out += PATTERN_ADD.format(name=pkg, version=curr[pkg])
