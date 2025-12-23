@@ -159,13 +159,8 @@ def get_package_groups(target: str, prev: dict[str, Any], manifests: dict[str, A
         if img not in pkg:
             continue
 
-        if first:
-            for p in pkg[img]:
-                common.add(p)
-        else:
-            for c in common.copy():
-                if c not in pkg[img]:
-                    common.remove(c)
+        for p in pkg[img]:
+            common.add(p)
 
         first = False
 
