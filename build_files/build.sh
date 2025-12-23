@@ -10,13 +10,13 @@ set -ouex pipefail
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # Emacs (and NeoVim, just in case)
-#dnf5 install -y emacs libvterm neovim
+dnf5 install -y emacs libvterm neovim
 
 # Some CLI tools and basic tooling
-#dnf5 install -y ripgrep fd-find cmake meson
+dnf5 install -y ripgrep fd-find cmake meson
 
 # BorgBackup
-#dnf5 install -y borgbackup borgmatic
+dnf5 install -y borgbackup borgmatic
 
 # Use a COPR Example:
 #
@@ -31,7 +31,7 @@ systemctl enable podman.socket
 
 # Podman tools
 
-#dnf5 install -y podman-compose podman-tui
+dnf5 install -y podman-compose podman-tui
 
 #### Numeric build scripts, based off of bazzite-dx
 
