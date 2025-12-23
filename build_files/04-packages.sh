@@ -17,23 +17,23 @@ FEDORA_PACKAGES=(
     setools
 
     ### Emacs/NeoVim
-    emacs
-    libvterm
-    neovim
+    # emacs
+    # libvterm
+    # neovim
 
     ### CLI and tooling
-    ripgrep
-    fd-find
-    cmake
-    meson
+    # ripgrep
+    # fd-find
+    # cmake
+    # meson
 
     ### BorgBackup
-    borgbackup
-    borgmatic
+    # borgbackup
+    # borgmatic
 
     ### Podman and Containers
-    podman-compose
-    podman-tui
+    # podman-compose
+    # podman-tui
 )
 
 # Install all Fedora packages
