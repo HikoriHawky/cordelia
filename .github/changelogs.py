@@ -43,28 +43,9 @@ From previous `{target}` version `{prev}` there have been the following changes.
 | **Mesa** | {pkgrel:mesa-filesystem} |
 | **Gamescope** | {pkgrel:gamescope} |
 | **KDE** | {pkgrel:plasma-desktop} |
-| **[HHD](https://github.com/hhd-dev/hhd)** | {pkgrel:hhd} |
 | **Podman** | {pkgrel:podman} |
-| **Nvidia** | {pkgrel:nvidia-kmod-common} |
-| **Nvidia LTS** | {pkgrel:nvidia-kmod-common-lts} |
 
 {changes}
-
-### How to rebase
-For current users, type the following to rebase to this version:
-```bash
-# Get Image Name
-IMAGE_NAME=$(jq -r '.["image-name"]' < /usr/share/ublue-os/image-info.json)
-
-# For this Stream
-sudo bootc switch --enforce-container-sigpolicy ghcr.io/hikorihawky/$IMAGE_NAME:{target}
-
-# For this Specific Image:
-sudo bootc switch --enforce-container-sigpolicy ghcr.io/hikorihawky/$IMAGE_NAME:{curr}
-```
-
-### Documentation
-Be sure to read the [documentation](https://docs.getaurora.dev/) for more information on how to use your cloud native system.
 """
 HANDWRITTEN_PLACEHOLDER = """\
 This is an automatically generated changelog for release `{curr}`."""
@@ -81,8 +62,8 @@ BLACKLIST_VERSIONS = [
     "atheros-firmware",
     "nvidia-kmod-common",
     "nvidia-kmod-common-lts",
-    "hhd-git",
-    "hhd",
+    # "hhd-git",
+    # "hhd",
 ]
 
 def get_images():
