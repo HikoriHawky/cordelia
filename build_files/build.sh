@@ -16,11 +16,7 @@ set -ouex pipefail
 # Disable COPRs so they don't end up enabled on the final image:
 # dnf5 -y copr disable ublue-os/staging
 
-#### Example for enabling a System Unit File
-
-systemctl enable podman.socket
-
-#### Numeric build scripts, based off of bazzite-dx
+### Numeric build scripts, based off of bazzite-dx
 
 CONTEXT_PATH="$(realpath "$(dirname "$0")/..")" # should return /run/context
 BUILD_SCRIPTS_PATH="$(realpath "$(dirname $0)")"
@@ -30,13 +26,20 @@ export CONTEXT_PATH
 export SCRIPTS_PATH
 export MAJOR_VERSION_NUMBER
 
+### Install babashka
+
+$BUILD_SCRIPTS_PATH/babashkainstall.sh
+
 run_buildscripts_for() {
 	WHAT=$1
 	shift
 	# Complex "find" expression here since there might not be any overrides
 	# Allows us to numerically sort scripts by stuff like "01-packages.sh" or whatever
 	# CUSTOM_NAME is required if we dont need or want the automatic name
-	find "${BUILD_SCRIPTS_PATH}/$WHAT" -maxdepth 1 -iname "*-*.sh" -type f -print0 | sort --zero-terminated --sort=human-numeric | while IFS= read -r -d $'\0' script ; do
+
+    # Modified to run scripts of any extension. Python, fish and babashka
+    # scripts are okay, just ensure that shebangs are in places
+	find "${BUILD_SCRIPTS_PATH}/$WHAT" -maxdepth 1 -iname "*-*.*" -type f -print0 | sort --zero-terminated --sort=human-numeric | while IFS= read -r -d $'\0' script ; do
 		if [ "${CUSTOM_NAME}" != "" ] ; then
 			WHAT=$CUSTOM_NAME
 		fi
