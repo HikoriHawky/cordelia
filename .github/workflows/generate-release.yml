@@ -45,8 +45,8 @@ jobs:
       - name: Generate Release Text
         id: generate-release-text
         shell: bash
-        # just changelogs "${{ matrix.version }}" "${{ inputs.handwritten }}"
         run: |
+          just changelogs "${{ matrix.version }}" "${{ inputs.handwritten }}"
           source ./output.env
           echo "title=${TITLE}" >> $GITHUB_OUTPUT
           echo "tag=${TAG}" >> $GITHUB_OUTPUT
@@ -57,6 +57,6 @@ jobs:
         with:
           name: ${{ steps.generate-release-text.outputs.title }}
           tag_name: ${{ steps.generate-release-text.outputs.tag }}
-          # body_path: ./changelog.md
+          body_path: ./changelog.md
           make_latest: ${{ matrix.version == 'stable' }}
           prerelease: false
