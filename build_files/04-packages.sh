@@ -41,15 +41,15 @@ echo "Installing ${#FEDORA_PACKAGES[@]} packages from base repos..."
 dnf5 -y install "${FEDORA_PACKAGES[@]}"
 
 # VSCode package from Microsoft repo TODO: Set up system files
-# echo "Installing VSCode from official repo..."
-# tee /etc/yum.repos.d/vscode.repo <<'EOF'
-# [code]
-# name=Visual Studio Code
-# baseurl=https://packages.microsoft.com/yumrepos/vscode
-# enabled=1
-# gpgcheck=1
-# gpgkey=https://packages.microsoft.com/keys/microsoft.asc
-# EOF
-# sed -i "s/enabled=.*/enabled=0/g" /etc/yum.repos.d/vscode.repo
-# dnf -y install --enablerepo=code \
-#     code
+echo "Installing VSCode from official repo..."
+tee /etc/yum.repos.d/vscode.repo <<'EOF'
+[code]
+name=Visual Studio Code
+baseurl=https://packages.microsoft.com/yumrepos/vscode
+enabled=1
+gpgcheck=1
+gpgkey=https://packages.microsoft.com/keys/microsoft.asc
+EOF
+sed -i "s/enabled=.*/enabled=0/g" /etc/yum.repos.d/vscode.repo
+dnf -y install --enablerepo=code \
+    code
