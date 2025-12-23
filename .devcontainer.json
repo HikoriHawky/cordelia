@@ -1,5 +1,7 @@
-// For format details, see https://aka.ms/devcontainer.json.
 {
-    "name": "cordelia-devcontainer",
-    "image": "ghcr.io/ublue-os/devcontainer:latest"
+    "name": "aurora-devcontainer",
+    "image": "ghcr.io/ublue-os/devcontainer:latest",
+    "onCreateCommand": {
+        "language-server-install": "sudo dnf install -y npm python3-pip && sudo npm i -g bash-language-server yaml-language-server vscode-langservers-extracted && sudo pip install basedpyright"
+    }
 }
