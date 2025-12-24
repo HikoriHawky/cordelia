@@ -307,7 +307,7 @@ def generate_changelog(
         if target == "stable-daily":
             curr_pretty = re.sub(rf"^[a-z]+-", "", curr_pretty)
         if not fedora_version + "." in curr_pretty:
-            curr_pretty=fedora_version + "." + curr_pretty
+            curr_pretty=fedora_version
         pretty = target.capitalize()
         pretty += " (F" + curr_pretty
         if finish:
