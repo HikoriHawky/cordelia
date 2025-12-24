@@ -1,0 +1,6 @@
+root = true
+
+# GitHub Actions YAML
+# [.github/workflows/*.yml]
+indent_style = space
+indent_size = 2

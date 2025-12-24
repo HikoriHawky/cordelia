@@ -2,6 +2,8 @@
     "name": "aurora-devcontainer",
     "image": "ghcr.io/ublue-os/devcontainer:latest",
     "onCreateCommand": {
-        "language-server-install": "sudo dnf install -y npm python3-pip && sudo npm i -g bash-language-server yaml-language-server vscode-langservers-extracted && sudo pip install basedpyright"
+      "language-server-install": "sudo dnf install -y npm python3-pip java-25-openjdk && sudo npm i -g bash-language-server yaml-language-server vscode-langservers-extracted && sudo pip install basedpyright",
+      "clj": "sudo bash < <(curl -s https://raw.githubusercontent.com/babashka/babashka/master/install) && sudo bash < <(curl https://github.com/clojure/brew-install/releases/latest/download/linux-install.sh)",
+      "clj-lsp": "sudo bash < <(curl -s https://raw.githubusercontent.com/clojure-lsp/clojure-lsp/master/install)"
     }
 }
