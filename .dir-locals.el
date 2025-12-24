@@ -1,4 +1,7 @@
 ;;; Directory Local Variables            -*- no-byte-compile: t -*-
 ;;; For more information see (info "(emacs) Directory Variables")
 
-((python-ts-mode . ((lsp-pyright-langserver-command . "basedpyright"))))
+((python-ts-mode . ((lsp-pyright-langserver-command . "basedpyright")))
+ (nil
+  . ((eglot-workspace-configuration
+      . (:clojure-lsp (:source-paths ["build_files"]))))))

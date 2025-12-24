@@ -4,4 +4,7 @@ output
 _build-*/**
 changelog.md
 
+# Build tools
 devcontainer
+.clj-kondo
+.lsp

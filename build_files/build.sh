@@ -39,7 +39,7 @@ run_buildscripts_for() {
 
     # Modified to run scripts of any extension. Python, fish and babashka
     # scripts are okay, just ensure that shebangs are in places
-	find "${BUILD_SCRIPTS_PATH}/$WHAT" -maxdepth 1 -iname "*-*.*" -type f -print0 | sort --zero-terminated --sort=human-numeric | while IFS= read -r -d $'\0' script ; do
+	find "${BUILD_SCRIPTS_PATH}/$WHAT" -maxdepth 2 -iname "*-*.*" -type f -print0 | sort --zero-terminated --sort=human-numeric | while IFS= read -r -d $'\0' script ; do
 		if [ "${CUSTOM_NAME}" != "" ] ; then
 			WHAT=$CUSTOM_NAME
 		fi
