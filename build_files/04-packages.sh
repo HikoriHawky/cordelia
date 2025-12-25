@@ -34,6 +34,14 @@ FEDORA_PACKAGES=(
     ### Podman and Containers
     podman-compose
     podman-tui
+
+    ### Input methods
+    fcitx5
+    fcitx5-configtool
+    fcitx5-mozc
+    fcitx5-hangul
+    #fcitx-autostart # Not needed on KDE, reenable when using Niri
+
 )
 
 # Install all Fedora packages
