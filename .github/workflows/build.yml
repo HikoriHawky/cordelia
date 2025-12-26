@@ -5,7 +5,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: '0 0 * * TUE'  # Every three days at midnight
+    - cron: '0 0 * * TUE'  # Every tuesday
   push:
     branches:
       - main
