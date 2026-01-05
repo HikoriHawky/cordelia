@@ -2,6 +2,8 @@
 
 set -ouex pipefail
 
+# TODO: Add bit about setting subuid/gid to 100000:65536
+
 ### Install packages
 
 # Packages can be installed from any enabled yum repo on the image.
