@@ -34,6 +34,12 @@ FEDORA_PACKAGES=(
     ### Podman and Containers
     podman-compose
     podman-tui
+
+    ### SDL
+    SDL2
+    SDL2_image
+    SDL2_ttf
+    SDL2_mixer
 )
 
 # Install all Fedora packages
