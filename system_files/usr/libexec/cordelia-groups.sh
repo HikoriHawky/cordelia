@@ -2,7 +2,7 @@
 
 # SCRIPT VERSION
 GROUP_SETUP_VER=2
-GROUP_SETUP_VER_FILE="/etc/ublue/aurora-groups"
+GROUP_SETUP_VER_FILE="/etc/ublue/cordelia-groups"
 GROUP_SETUP_VER_RAN=$(cat "$GROUP_SETUP_VER_FILE")
 
 # make the directory if it doesn't exist
@@ -26,6 +26,7 @@ append_group() {
 # Setup Groups
 append_group plugdev
 append_group input
+append_group plover
 append_group libvirt
 append_group video
 append_group render
@@ -33,6 +34,11 @@ append_group render
 wheelarray=($(getent group wheel | cut -d ":" -f 4 | tr ',' '\n'))
 for user in $wheelarray; do
   usermod -aG plugdev $user
+  usermod -aG input $user
+  usermod -aG plover $user
+  usermod -aG libvirt $user
+  usermod -aG video $user
+  usermod -aG render $user
 done
 
 # Prevent future executions
