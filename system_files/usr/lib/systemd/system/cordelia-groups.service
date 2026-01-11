@@ -1,5 +1,5 @@
 [Unit]
-Description=Add plugdev groups
+Description=Add groups
 
 [Service]
 Type=oneshot
