@@ -40,6 +40,12 @@ FEDORA_PACKAGES=(
     SDL2_image
     SDL2_ttf
     SDL2_mixer
+
+    ### AMD ROCm
+    rocminfo
+    rocm-opencl
+    rocm-hip
+    rocm-runtime
 )
 
 # Install all Fedora packages
