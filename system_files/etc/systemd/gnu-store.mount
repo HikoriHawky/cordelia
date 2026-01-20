@@ -1,0 +1,14 @@
+[Unit]
+Description=Read-only /gnu/store for GNU Guix
+After=mkdir-rootfs@gnu-store.service
+Wants=mkdir-rootfs@gnu-store.service
+Before=guix-daemon.service
+
+[Install]
+WantedBy=guix-daemon.service
+
+[Mount]
+What=/var/gnustore
+Where=/gnu/store
+Type=none
+Options=bind,ro
