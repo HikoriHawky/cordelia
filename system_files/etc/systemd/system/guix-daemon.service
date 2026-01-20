@@ -25,3 +25,6 @@ Restart=always
 # Some package builds (for example, go@1.8.1) may require even more than
 # 1024 tasks.
 TasksMax=8192
+
+[Install]
+WantedBy=multi-user.target
