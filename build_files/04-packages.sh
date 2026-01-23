@@ -26,6 +26,7 @@ FEDORA_PACKAGES=(
     fd-find
     cmake
     meson
+    libtool
 
     ### BorgBackup
     borgbackup
