@@ -28,9 +28,6 @@ FEDORA_PACKAGES=(
     meson
     libtool
     vulkan-headers
-    libavcodec-free-devel
-    libavformat-free-devel
-    libavavutil-free-devel
 
     ### BorgBackup
     borgbackup
