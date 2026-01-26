@@ -27,6 +27,7 @@ FEDORA_PACKAGES=(
     cmake
     meson
     libtool
+    vulkan-headers
 
     ### BorgBackup
     borgbackup
