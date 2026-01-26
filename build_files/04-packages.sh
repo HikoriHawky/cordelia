@@ -31,6 +31,7 @@ FEDORA_PACKAGES=(
 	vulkan-headers
 	vulkan-loader-devel
 	vulkan-utility-libraries-devel
+    glslc
 
 	### BorgBackup
 	borgbackup
