@@ -28,6 +28,9 @@ FEDORA_PACKAGES=(
     meson
     libtool
     vulkan-headers
+    vulkan-loader-devel
+    vulkan-utility-libraries-devel
+
 
     ### BorgBackup
     borgbackup
