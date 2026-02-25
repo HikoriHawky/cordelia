@@ -10,17 +10,17 @@ mkdir -p /etc/ublue
 
 # Run script if updated
 if [[ -f $GROUP_SETUP_VER_FILE && "$GROUP_SETUP_VER" = "$GROUP_SETUP_VER_RAN" ]]; then
-  echo "Group setup has already run. Exiting..."
-  exit 0
+    echo "Group setup has already run. Exiting..."
+    exit 0
 fi
 
 # Function to append a group entry to /etc/group
 append_group() {
-  local group_name="$1"
-  if ! grep -q "^$group_name:" /etc/group; then
-    echo "Appending $group_name to /etc/group"
-    grep "^$group_name:" /usr/lib/group | tee -a /etc/group >/dev/null
-  fi
+    local group_name="$1"
+    if ! grep -q "^$group_name:" /etc/group; then
+        echo "Appending $group_name to /etc/group"
+        grep "^$group_name:" /usr/lib/group | tee -a /etc/group >/dev/null
+    fi
 }
 
 # Setup Groups
@@ -33,12 +33,12 @@ append_group render
 
 wheelarray=($(getent group wheel | cut -d ":" -f 4 | tr ',' '\n'))
 for user in $wheelarray; do
-  usermod -aG plugdev $user
-  usermod -aG input $user
-  usermod -aG plover $user
-  usermod -aG libvirt $user
-  usermod -aG video $user
-  usermod -aG render $user
+    usermod -aG plugdev $user
+    usermod -aG input $user
+    usermod -aG plover $user
+    usermod -aG libvirt $user
+    usermod -aG video $user
+    usermod -aG render $user
 done
 
 # Prevent future executions

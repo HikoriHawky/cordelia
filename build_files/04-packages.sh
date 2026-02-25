@@ -53,6 +53,8 @@ FEDORA_PACKAGES=(
     rocm-opencl
     rocm-hip
     rocm-runtime
+
+    qutebrowser
 )
 
 # Install all Fedora packages
