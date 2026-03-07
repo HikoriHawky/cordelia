@@ -75,6 +75,10 @@ sed -i "s/enabled=.*/enabled=0/g" /etc/yum.repos.d/vscode.repo
 dnf -y install --enablerepo=code \
     code
 
+dnf5 -y copr enable faugus/faugus-launcher
+dnf5 -y install faugus-launcher
+dnf5 -y copr disable faugus/faugus-launcher
+
 # Install additional KDE themeing packages
 echo "Installing KDE theming packages from openSUSE Build Service repos..."
 wget -O /etc/yum.repos.d/home:luisbocanegra.repo https://download.opensuse.org/repositories/home:luisbocanegra/Fedora_43/home:luisbocanegra.repo
