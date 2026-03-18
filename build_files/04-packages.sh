@@ -22,6 +22,7 @@ FEDORA_PACKAGES=(
     neovim
 
     ### CLI and tooling
+    git-lfs
     foot
     ripgrep
     fd-find
