@@ -15,6 +15,7 @@ FEDORA_PACKAGES=(
     rclone
     restic
     setools
+    corectrl
 
     ### Emacs/NeoVim
     emacs
