@@ -29,6 +29,7 @@ FEDORA_PACKAGES=(
     fd-find
     cmake
     meson
+    mono-devel
     libtool
     vulkan-headers
     vulkan-loader-devel
