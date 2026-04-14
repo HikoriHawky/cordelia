@@ -58,6 +58,7 @@ FEDORA_PACKAGES=(
     rocm-runtime
 
     qutebrowser
+    wireshark
 )
 
 # Install all Fedora packages
