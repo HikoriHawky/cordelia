@@ -51,12 +51,6 @@ FEDORA_PACKAGES=(
     SDL2_ttf
     SDL2_mixer
 
-    ### AMD ROCm
-    rocminfo
-    rocm-opencl
-    rocm-hip
-    rocm-runtime
-
     qutebrowser
     wireshark
 )
@@ -64,6 +58,22 @@ FEDORA_PACKAGES=(
 # Install all Fedora packages
 echo "Installing ${#FEDORA_PACKAGES[@]} packages from base repos..."
 dnf5 -y install "${FEDORA_PACKAGES[@]}"
+
+# QEMU & ROCM stuff
+dnf5 remove -y \
+    mesa-libOpenCL
+
+dnf5 --setopt=install_weak_deps=False install -y \
+    rocm-hip \
+    rocm-opencl \
+    rocm-clinfo \
+    rocm-smi \
+    qemu \
+    libvirt \
+    qemu-kvm \
+    virt-manager \
+    edk2-ovmf \
+    guestfs-tools
 
 # VSCode package from Microsoft repo TODO: Set up system files
 echo "Installing VSCode from official repo..."
