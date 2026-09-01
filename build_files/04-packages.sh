@@ -99,3 +99,9 @@ wget -O /etc/yum.repos.d/home:paul4us.repo https://download.opensuse.org/reposit
 sed -i "s/enabled=.*/enabled=0/g" /etc/yum.repos.d/home:paul4us.repo
 dnf -y install --enablerepo=home_paul4us \
     klassy
+
+# Brave Origin for the FEW instances I need a chromium browser
+# Like なんでや、これ you total 박치기공룡 Pixiv why can't I add a passkey in Firefox you stink
+wget -O /etc/yum.repos.d/brave-browser.repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
+dnf -y install --enablerepo=brave-browser \
+    brave-origin
