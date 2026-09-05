@@ -36,6 +36,11 @@ FEDORA_PACKAGES=(
     vulkan-utility-libraries-devel
     glslc
     aspnetcore-runtime-9.0 # For SPT
+    sequoia-sq
+    pcsc-lite
+    yubikey-manager
+    chezmoi
+    age
 
     ### BorgBackup
     borgbackup
