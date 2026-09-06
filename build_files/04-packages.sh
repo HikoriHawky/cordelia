@@ -36,6 +36,8 @@ FEDORA_PACKAGES=(
 	vulkan-utility-libraries-devel
 	glslc
 	aspnetcore-runtime-9.0 # For SPT
+	gnupg2
+	gnupg2-scdaemon
 	sequoia-sq
 	pcsc-lite
 	yubikey-manager
@@ -58,6 +60,9 @@ FEDORA_PACKAGES=(
 
 	qutebrowser
 	wireshark
+
+	### GNOME stuff
+	gnome-tweaks
 )
 
 # Install all Fedora packages
