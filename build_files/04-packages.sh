@@ -10,7 +10,7 @@ FEDORA_PACKAGES=(
 	### From ublue-os/aurora
 	davfs2
 	ifuse
-	ksystemlog
+	#ksystemlog
 	#powertop
 	rclone
 	restic
@@ -95,12 +95,12 @@ dnf -y install --enablerepo=code \
 	code
 
 # Install additional KDE themeing packages
-echo "Installing KDE theming packages from openSUSE Build Service repos..."
-wget -O /etc/yum.repos.d/home:luisbocanegra.repo https://download.opensuse.org/repositories/home:luisbocanegra/Fedora_43/home:luisbocanegra.repo
-sed -i "s/enabled=.*/enabled=0/g" /etc/yum.repos.d/home:luisbocanegra.repo
-dnf -y install --enablerepo=home_luisbocanegra \
-	kde-material-you-colors
-wget -O /etc/yum.repos.d/home:paul4us.repo https://download.opensuse.org/repositories/home:paul4us/Fedora_43/home:paul4us.repo
-sed -i "s/enabled=.*/enabled=0/g" /etc/yum.repos.d/home:paul4us.repo
-dnf -y install --enablerepo=home_paul4us \
-	klassy
+#echo "Installing KDE theming packages from openSUSE Build Service repos..."
+#wget -O /etc/yum.repos.d/home:luisbocanegra.repo https://download.opensuse.org/repositories/home:luisbocanegra/Fedora_43/home:luisbocanegra.repo
+#sed -i "s/enabled=.*/enabled=0/g" /etc/yum.repos.d/home:luisbocanegra.repo
+#dnf -y install --enablerepo=home_luisbocanegra \
+#	kde-material-you-colors
+#wget -O /etc/yum.repos.d/home:paul4us.repo https://download.opensuse.org/repositories/home:paul4us/Fedora_43/home:paul4us.repo
+#sed -i "s/enabled=.*/enabled=0/g" /etc/yum.repos.d/home:paul4us.repo
+#dnf -y install --enablerepo=home_paul4us \
+#	klassy
